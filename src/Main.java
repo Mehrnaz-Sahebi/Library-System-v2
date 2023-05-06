@@ -12,8 +12,16 @@ public class Main {
                 CommandProcessor.addLibrary(poc, librarySystem);
             }
             //add-category
-            if(poc[0].equals("add-category")){
+            else if(poc[0].equals("add-category")){
                 CommandProcessor.addCategory(poc, librarySystem);
+            }
+            //add-student
+            else if(poc[0].equals("add-student")){
+                CommandProcessor.addStudent(poc, librarySystem);
+            }
+            //add-Staff
+            else if(poc[0].equals("add-staff")){
+                CommandProcessor.addStaff(poc, librarySystem);
             }
         }
     }
