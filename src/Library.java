@@ -18,4 +18,8 @@ public class Library {
         this.address = address;
         this.sources = new HashSet<Source>();
     }
+
+    public String getLibraryId() {
+        return libraryId;
+    }
 }
