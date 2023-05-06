@@ -64,6 +64,23 @@ public class CommandProcessor {
             System.out.println("success");
         }
     }
+    public static void addManager(String[] poc, LibrarySystem librarySystem) {
+        if (librarySystem.doesUserExist(3)) {
+            System.out.println("duplicate-id");
+        } else if (!librarySystem.doesLibraryExist(poc[10])) {
+            System.out.println("not-found");
+        } else if (!librarySystem.doesUserExist(poc[1])) {
+            System.out.println("not-found");
+        } else if (!librarySystem.isUserAdmin(poc[1])) {
+            System.out.println("permission-denied");
+        } else if (!librarySystem.getUser(poc[1]).getPassword().equals(poc[2])) {
+            System.out.println("invalid-pass");
+        } else {
+            librarySystem.addManager(poc[3], poc[4], poc[5], poc[6], poc[7], Integer.parseInt(poc[8]), poc[9],poc[10]);
+            System.out.println("success");
+        }
+    }
+
 
 
 }

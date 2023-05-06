@@ -23,6 +23,11 @@ public class Main {
             else if(poc[0].equals("add-staff")){
                 CommandProcessor.addStaff(poc, librarySystem);
             }
+            //add-manager
+            else if(poc[0].equals("add-manager")){
+                CommandProcessor.addManager(poc, librarySystem);
+            }
+
         }
     }
 }

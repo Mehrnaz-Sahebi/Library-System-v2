@@ -27,6 +27,11 @@ public class LibrarySystem {
         Professor newProfessor = new Professor(id,password,firstName,lastName,nationalId,yearOfBirth,address);
         users.add(newProfessor);
     }
+    public void addManager(String id, String password, String firstName, String lastName, String nationalId, int yearOfBirth, String address, String libraryId){
+        Manager newManager = new Manager(id,password,firstName,lastName,nationalId,yearOfBirth,address,libraryId);
+        users.add(newManager);
+    }
+
     public User getUser(String userId){
         for (User user:users) {
             if(user.getUserId().equals(userId)){
