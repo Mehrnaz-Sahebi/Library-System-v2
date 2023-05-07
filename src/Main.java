@@ -43,6 +43,10 @@ public class Main {
             else if (poc[0].equals("add-ganjineh-book")) {
                 CommandProcessor.addGanjinehBook(poc,librarySystem);
             }
+            //add-selling-book
+            else if (poc[0].equals("add-selling-book")) {
+                CommandProcessor.addSellingBook(poc,librarySystem);
+            }
 
         }
     }

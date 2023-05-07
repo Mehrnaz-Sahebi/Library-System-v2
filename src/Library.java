@@ -48,4 +48,8 @@ public class Library {
         GanjinehBook newGanjinehBook = new GanjinehBook(sourceId,title,author,publisher,yearOfPublishing,donor,category);
         sources.add(newGanjinehBook);
     }
+    public void addSellingBook(String sourceId, String title, String author, String publisher, int yearOfPublishing, int numberOfCopies, long price, int discount, String category){
+        SellingBook newSellingBook = new SellingBook(sourceId,title,author,publisher,yearOfPublishing,numberOfCopies,price,discount,category);
+        sources.add(newSellingBook);
+    }
 }

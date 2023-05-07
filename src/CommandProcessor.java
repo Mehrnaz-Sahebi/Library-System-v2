@@ -131,6 +131,23 @@ public class CommandProcessor {
             System.out.println("success");
         }
     }
+    public static void addSellingBook(String[] poc, LibrarySystem librarySystem){
+        if (!librarySystem.doesLibraryExist(poc[12])||!librarySystem.doesCategoryExist(poc[11])||!librarySystem.doesUserExist(poc[1])){
+            System.out.println("not-found");
+        } else if (!librarySystem.getUser(poc[1]).getPassword().equals(poc[2])) {
+            System.out.println("invalid-pass");
+        } else if (!librarySystem.isUserManager(poc[1])) {
+            System.out.println("permission-denied");
+        } else if (!((Manager)librarySystem.getUser(poc[1])).getLibraryId().equals(poc[12])) {
+            System.out.println("permission-denied");
+        } else if (librarySystem.getLibrary(poc[12]).doesSourceExist(poc[3])){
+            System.out.println("duplicate-id");
+        }
+        else {
+            librarySystem.getLibrary(poc[12]).addSellingBook(poc[3],poc[4],poc[5],poc[6],Integer.parseInt(poc[7]),Integer.parseInt(poc[8]),Long.parseLong(poc[9]),Integer.parseInt(poc[10]),poc[11]);
+            System.out.println("success");
+        }
+    }
 
 
 
