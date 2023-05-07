@@ -33,6 +33,10 @@ public class Main {
             }
             //add-book
             else if(poc[0].equals("add-book")){
+                CommandProcessor.addBook(poc,librarySystem);
+            }
+            //add-thesis
+            else if (poc[0].equals("add-thesis")) {
                 CommandProcessor.
             }
 

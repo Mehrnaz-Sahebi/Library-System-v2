@@ -40,4 +40,9 @@ public class Library {
         NormalBook newNormalBook = new NormalBook(sourceId,title,author,publisher,yearOfPublishing, numberOfCopies,category);
         sources.add(newNormalBook);
     }
+    public void addThesis(String sourceId, String title, String author, String supervisor, int yearOfDefence, String category){
+        Thesis newThesis = new Thesis(sourceId,title,author,supervisor,yearOfDefence,category);
+        sources.add(newThesis);
+    }
+
 }
