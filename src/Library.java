@@ -44,5 +44,8 @@ public class Library {
         Thesis newThesis = new Thesis(sourceId,title,author,supervisor,yearOfDefence,category);
         sources.add(newThesis);
     }
-
+    public void addGanjinehBook(String sourceId, String title, String author, String publisher, int yearOfPublishing, String donor, String category){
+        GanjinehBook newGanjinehBook = new GanjinehBook(sourceId,title,author,publisher,yearOfPublishing,donor,category);
+        sources.add(newGanjinehBook);
+    }
 }

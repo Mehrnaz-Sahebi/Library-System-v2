@@ -37,7 +37,11 @@ public class Main {
             }
             //add-thesis
             else if (poc[0].equals("add-thesis")) {
-                CommandProcessor.
+                CommandProcessor.addThesis(poc,librarySystem);
+            }
+            //add-ganjineh-book
+            else if (poc[0].equals("add-ganjineh-book")) {
+                CommandProcessor.addGanjinehBook(poc,librarySystem);
             }
 
         }
