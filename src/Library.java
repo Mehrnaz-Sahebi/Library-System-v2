@@ -52,4 +52,7 @@ public class Library {
         SellingBook newSellingBook = new SellingBook(sourceId,title,author,publisher,yearOfPublishing,numberOfCopies,price,discount,category);
         sources.add(newSellingBook);
     }
+    public void removeSource(String sourceId){
+        sources.remove(this.getSource(sourceId));
+    }
 }

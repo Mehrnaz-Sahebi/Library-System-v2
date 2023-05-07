@@ -28,7 +28,7 @@ public class Main {
                 CommandProcessor.addManager(poc, librarySystem);
             }
             //remove-user
-            else if (poc[0].equals("remove-(user")) {
+            else if (poc[0].equals("remove-user")) {
                 CommandProcessor.removeUser(poc, librarySystem);
             }
             //add-book
@@ -46,6 +46,10 @@ public class Main {
             //add-selling-book
             else if (poc[0].equals("add-selling-book")) {
                 CommandProcessor.addSellingBook(poc,librarySystem);
+            }
+            //remove-resource
+            else if (poc[0].equals("remove-resource")) {
+                CommandProcessor.removeResource(poc, librarySystem);
             }
 
         }
