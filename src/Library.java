@@ -22,4 +22,22 @@ public class Library {
     public String getLibraryId() {
         return libraryId;
     }
+    public Source getSource(String sourceId){
+        for (Source source:sources) {
+            if(source.getSourceId().equals(sourceId)){
+                return source;
+            }
+        }
+        return null;
+    }
+    public boolean doesSourceExist(String sourceId) {
+        if (this.getSource(sourceId) == null) {
+            return false;
+        }
+        return true;
+    }
+    public void addNormalBook(String sourceId, String title, String author, String publisher, int yearOfPublishing, int numberOfCopies, String category){
+        NormalBook newNormalBook = new NormalBook(sourceId,title,author,publisher,yearOfPublishing, numberOfCopies,category);
+        sources.add(newNormalBook);
+    }
 }

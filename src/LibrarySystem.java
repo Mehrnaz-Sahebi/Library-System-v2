@@ -9,6 +9,8 @@ public class LibrarySystem {
     public LibrarySystem(){
         libraries = new HashSet<Library>();
         users = new HashSet<User>();
+        Admin ourAdmin = new Admin("admin","AdminPass");
+        users.add(ourAdmin);
         categories = new HashSet<Category>();
         Category nullCategory = new Category("null","null","null");
         categories.add(nullCategory);
@@ -54,6 +56,14 @@ public class LibrarySystem {
         }
         return false;
     }
+    public boolean isUserManager(String userId){
+        for (User user:users) {
+            if(user.getUserId().equals(userId)&& user instanceof Manager){
+                return true;
+            }
+        }
+        return false;
+    }
 
     //category
     public void addCategory(String categoryId, String name, String superCategory){
@@ -94,6 +104,8 @@ public class LibrarySystem {
         }
         return true;
     }
+
+
 
 
 

@@ -27,6 +27,14 @@ public class Main {
             else if(poc[0].equals("add-manager")){
                 CommandProcessor.addManager(poc, librarySystem);
             }
+            //remove-user
+            else if (poc[0].equals("remove-user")) {
+
+            }
+            //add-book
+            else if(poc[0].equals("add-book")){
+                CommandProcessor.
+            }
 
         }
     }
