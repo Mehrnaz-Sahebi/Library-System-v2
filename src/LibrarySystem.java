@@ -64,6 +64,9 @@ public class LibrarySystem {
         }
         return false;
     }
+    public void removeUser(String userId){
+        users.remove(this.getUser(userId));
+    }
 
     //category
     public void addCategory(String categoryId, String name, String superCategory){

@@ -28,8 +28,8 @@ public class Main {
                 CommandProcessor.addManager(poc, librarySystem);
             }
             //remove-user
-            else if (poc[0].equals("remove-user")) {
-
+            else if (poc[0].equals("remove-(user")) {
+                CommandProcessor.removeUser(poc, librarySystem);
             }
             //add-book
             else if(poc[0].equals("add-book")){
