@@ -72,4 +72,18 @@ public class Library {
         }
         return true;
     }
+    public boolean isSourceBorrowed(String sourceId){
+        Source source = getSource(sourceId);
+        if(source instanceof NormalBook){
+            if(((NormalBook) source).getRemaining()!= ((NormalBook) source).getCountOfCopies()){
+                return true;
+            }
+        }
+        if(source instanceof Thesis){
+            if(((Thesis) source).isBorrowed()){
+                return true;
+            }
+        }
+        return false;
+    }
 }

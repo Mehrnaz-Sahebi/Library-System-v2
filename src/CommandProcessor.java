@@ -178,9 +178,9 @@ public class CommandProcessor {
             System.out.println("invalid-pass");
         } else if (!((Manager) librarySystem.getUser(poc[1])).getLibraryId().equals(poc[4])) {
             System.out.println("permission-denied");
-        }
-        //not-allowed
-        else {
+        } else if (librarySystem.getLibrary(poc[4]).isSourceBorrowed(poc[3])) {
+            System.out.println("not-allowed");;
+        } else {
             librarySystem.getLibrary(poc[4]).removeSource(poc[3]);
             System.out.println("success");
         }

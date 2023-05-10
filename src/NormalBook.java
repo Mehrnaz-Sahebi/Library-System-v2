@@ -8,6 +8,10 @@ public class NormalBook extends Book {
         this.remaining = countOfCopies;
     }
 
+    public int getCountOfCopies() {
+        return countOfCopies;
+    }
+
     public int getRemaining() {
         return remaining;
     }
