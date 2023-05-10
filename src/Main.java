@@ -59,6 +59,10 @@ public class Main {
             else if (poc[0].equals("return")) {
                 CommandProcessor.returning(poc,librarySystem);
             }
+            //buy
+            else if(poc[0].equals("buy")){
+                CommandProcessor.buy(poc,librarySystem);
+            }
             command = scanner.nextLine();
             poc= command.split("[#|]+");
         }

@@ -16,7 +16,7 @@ public class Staff extends User implements Borrower{
     }
     @Override
     public boolean canBorrow(String libraryId, Source source, String date, String time){
-        if(getCountOfBorrowedSources()>=MAX_SOURCES_STAFF_CAN_BORROW){
+        if(getCountOfBorrowedSources()>=MAX_SOURCES_STAFF_CAN_BORROW||getDebt()>0){
             return false;
         }
         String[] partsOfDate = date.split("-");

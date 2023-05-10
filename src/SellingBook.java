@@ -11,4 +11,16 @@ public class SellingBook extends Book{
         this.discount = discount;
         this.remaining = countOfCopies;
     }
+
+    public int getRemaining() {
+        return remaining;
+    }
+
+    public void setRemaining(int remaining) {
+        this.remaining = remaining;
+    }
+
+    public void getBought(){
+        setRemaining(getRemaining()-1);
+    }
 }

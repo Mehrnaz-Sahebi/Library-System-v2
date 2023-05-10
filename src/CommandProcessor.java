@@ -214,6 +214,20 @@ public class CommandProcessor {
             }
         }
     }
+    public static void buy(String[] poc , LibrarySystem librarySystem){
+        if (!librarySystem.doesLibraryExist(poc[3]) || !librarySystem.getLibrary(poc[3]).doesSourceExist(poc[4]) || !librarySystem.doesUserExist(poc[1])) {
+            System.out.println("not-found");
+        } else if (librarySystem.isUserManager(poc[1])) {
+            System.out.println("permission-denied");
+        } else if (!librarySystem.getUser(poc[1]).getPassword().equals(poc[2])) {
+            System.out.println("invalid-pass");
+        } else if(!librarySystem.getLibrary(poc[3]).canSourceBeBought(poc[4]) || librarySystem.getUserDebt(poc[1])>0){
+            System.out.println("not-allowed");
+        }else{
+            ((SellingBook) librarySystem.getLibrary(poc[3]).getSource(poc[4])).getBought();
+            System.out.println("success");
+        }
+    }
 
 }
 

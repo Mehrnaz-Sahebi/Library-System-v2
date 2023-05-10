@@ -86,4 +86,14 @@ public class Library {
         }
         return false;
     }
+    public boolean canSourceBeBought(String sourceId){
+        Source source = getSource(sourceId);
+        if(!(source instanceof SellingBook)){
+            return false;
+        }
+        else if(source instanceof SellingBook && ((SellingBook) source).getRemaining()<=0){
+            return false;
+        }
+        return true;
+    }
 }
