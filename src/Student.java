@@ -37,4 +37,38 @@ public class Student extends User implements Borrower{
         Borrowing borrowing = new Borrowing(this.getUserId(),libraryId,sourceId,date,time);
         borrowings.add(borrowing);
     }
+    @Override
+    public boolean hasBorrowedSource(String libraryId, String sourceId){
+        for (Borrowing borrowing:borrowings) {
+            if(borrowing.getSourceId().equals(sourceId)&&borrowing.getLibraryId().equals(libraryId)){
+                return true;
+            }
+        }
+        return false;
+    }
+    @Override
+    public long returns(String libraryId, Source source, String date, String time){
+        String[] partsOfDate = date.split("-");
+        String[] partsOfTime = time.split(":");
+        long differenceOFDays = 0;
+        Date returnTime = new Date(Integer.parseInt(partsOfDate[0])-1900, Integer.parseInt(partsOfDate[1])-1,Integer.parseInt(partsOfDate[2]),Integer.parseInt(partsOfTime[0]),Integer.parseInt(partsOfTime[1]));
+        for (Borrowing borrowing:borrowings) {
+            if(borrowing.getLibraryId().equals(libraryId)&&borrowing.getSourceId().equals(source.getSourceId())){
+                differenceOFDays = returnTime.getTime() - borrowing.getBorrowingTime().getTime();
+                differenceOFDays = TimeUnit.HOURS.convert(differenceOFDays, TimeUnit.MILLISECONDS);
+                borrowings.remove(borrowing);
+                break;
+            }
+        }
+        if(source instanceof NormalBook && differenceOFDays<=MAX_HOURS_BOOK_STUDENT){
+            return 0;
+        } else if (source instanceof NormalBook && differenceOFDays>MAX_HOURS_BOOK_STUDENT) {
+            return (differenceOFDays-MAX_HOURS_BOOK_STUDENT)*STUDENT_PENALTY_FOR_AN_HOUR;
+        } else if (source instanceof Thesis && differenceOFDays<=MAX_HOURS_THESIS_STUDENT){
+            return 0;
+        } else{// if(source instanceof Thesis && differenceOFDays>MAX_HOURS_THESIS_STUDENT){
+            return (differenceOFDays-MAX_HOURS_THESIS_STUDENT)*STUDENT_PENALTY_FOR_AN_HOUR;
+        }
+    }
+
 }

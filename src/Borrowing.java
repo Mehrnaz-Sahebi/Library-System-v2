@@ -22,4 +22,8 @@ public class Borrowing {
     public Date getBorrowingTime() {
         return borrowingTime;
     }
+
+    public String getLibraryId() {
+        return libraryId;
+    }
 }

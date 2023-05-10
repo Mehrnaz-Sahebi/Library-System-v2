@@ -196,6 +196,17 @@ public class CommandProcessor {
             System.out.println("success");
         }
     }
+    public static void returning(String[] poc , LibrarySystem librarySystem){
+        if (!librarySystem.doesLibraryExist(poc[3]) || !librarySystem.getLibrary(poc[3]).doesSourceExist(poc[4]) || !librarySystem.doesUserExist(poc[1]) || !librarySystem.hasUserBorrowedSource(poc[1],poc[3],poc[4])) {
+            System.out.println("not-found");
+        } else if(!librarySystem.getUser(poc[1]).getPassword().equals(poc[2])){
+            System.out.println("invalid-pass");
+        }
+        else {
+            librarySystem.userReturns(poc[1],poc[3],poc[4],poc[5],poc[6]);
+            System.out.println("success");
+        }
+    }
 
 }
 

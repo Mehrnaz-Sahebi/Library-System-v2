@@ -88,6 +88,27 @@ public class LibrarySystem {
             ((Professor) user).borrow(libraryId,sourceId,date,time);
         }
     }
+    public boolean hasUserBorrowedSource(String userId, String libraryId, String sourceId){
+        User user = getUser(userId);
+        if(user instanceof Student){
+            return ((Student) user).hasBorrowedSource(libraryId,sourceId);
+        }if(user instanceof Staff){
+            return ((Staff) user).hasBorrowedSource(libraryId,sourceId);
+        }else {
+            return ((Professor) user).hasBorrowedSource(libraryId,sourceId);
+        }
+    }
+    public long userReturns(String userId, String libraryId, String sourceId, String date, String time){
+        User user = getUser(userId);
+        Source source = getLibrary(libraryId).getSource(sourceId);
+        if(user instanceof Student){
+            return ((Student) user).returns(libraryId,source,date,time);
+        }if(user instanceof Staff){
+            return ((Staff) user).returns(libraryId,source,date,time);
+        }else {
+            return ((Professor) user).returns(libraryId,source,date,time);
+        }
+    }
 
     //category
     public void addCategory(String categoryId, String name, String superCategory){

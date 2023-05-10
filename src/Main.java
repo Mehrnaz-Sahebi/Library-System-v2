@@ -55,6 +55,10 @@ public class Main {
             else if (poc[0].equals("borrow")) {
                 CommandProcessor.borrow(poc, librarySystem);
             }
+            //return
+            else if (poc[0].equals("return")) {
+                CommandProcessor.returning(poc,librarySystem);
+            }
             command = scanner.nextLine();
             poc= command.split("[#|]+");
         }
