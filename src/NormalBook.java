@@ -11,4 +11,14 @@ public class NormalBook extends Book {
     public int getRemaining() {
         return remaining;
     }
+
+    public void setRemaining(int remaining) {
+        this.remaining = remaining;
+    }
+    public void plusRemaining(){
+        setRemaining(getRemaining()+1);
+    }
+    public void minusRemaining(){
+        setRemaining(getRemaining()-1);
+    }
 }

@@ -91,12 +91,14 @@ public class CommandProcessor {
             System.out.println("invalid-pass");
         } else if (!librarySystem.doesUserExist(poc[3])) {
             System.out.println("not-found");
+        } else if (librarySystem.getUserCountOfBorrowedSources(poc[1]) > 0 || librarySystem.getUserDebt(poc[1]) > 0 ){
+            System.out.println("not-allowed");
         }
-        //not-allowed
-        else {
+        else{
             librarySystem.removeUser(poc[3]);
             System.out.println("success");
         }
+
     }
 
     public static void addBook(String[] poc, LibrarySystem librarySystem) {
@@ -187,24 +189,28 @@ public class CommandProcessor {
     public static void borrow(String[] poc, LibrarySystem librarySystem) {
         if (!librarySystem.doesLibraryExist(poc[3]) || !librarySystem.getLibrary(poc[3]).doesSourceExist(poc[4]) || !librarySystem.doesUserExist(poc[1])) {
             System.out.println("not-found");
-        } else if(!librarySystem.getUser(poc[1]).getPassword().equals(poc[2])){
+        } else if (!librarySystem.getUser(poc[1]).getPassword().equals(poc[2])) {
             System.out.println("invalid-pass");
-        } else if (!librarySystem.getLibrary(poc[3]).canSourceBeBorrowed(poc[4])||!librarySystem.canUserBorrow(poc[1],librarySystem.getLibrary(poc[3]).getSource(poc[4]),poc[5],poc[6])) {
+        } else if (!librarySystem.getLibrary(poc[3]).canSourceBeBorrowed(poc[4]) || !librarySystem.canUserBorrow(poc[1], poc[3], poc[4], poc[5], poc[6])) {
             System.out.println("not-allowed");
-        }else {
-            librarySystem.userBorrow(poc[1],poc[3],poc[4],poc[5],poc[6]);
+        } else {
+            librarySystem.userBorrow(poc[1], poc[3], poc[4], poc[5], poc[6]);
             System.out.println("success");
         }
     }
-    public static void returning(String[] poc , LibrarySystem librarySystem){
-        if (!librarySystem.doesLibraryExist(poc[3]) || !librarySystem.getLibrary(poc[3]).doesSourceExist(poc[4]) || !librarySystem.doesUserExist(poc[1]) || !librarySystem.hasUserBorrowedSource(poc[1],poc[3],poc[4])) {
+
+    public static void returning(String[] poc, LibrarySystem librarySystem) {
+        if (!librarySystem.doesLibraryExist(poc[3]) || !librarySystem.getLibrary(poc[3]).doesSourceExist(poc[4]) || !librarySystem.doesUserExist(poc[1]) || !librarySystem.hasUserBorrowedSource(poc[1], poc[3], poc[4])) {
             System.out.println("not-found");
-        } else if(!librarySystem.getUser(poc[1]).getPassword().equals(poc[2])){
+        } else if (!librarySystem.getUser(poc[1]).getPassword().equals(poc[2])) {
             System.out.println("invalid-pass");
-        }
-        else {
-            librarySystem.userReturns(poc[1],poc[3],poc[4],poc[5],poc[6]);
-            System.out.println("success");
+        } else {
+            long debt = librarySystem.userReturns(poc[1], poc[3], poc[4], poc[5], poc[6]);
+            if (debt == 0) {
+                System.out.println("success");
+            } else {
+                System.out.println(debt);
+            }
         }
     }
 

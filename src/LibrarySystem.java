@@ -67,13 +67,14 @@ public class LibrarySystem {
     public void removeUser(String userId){
         users.remove(this.getUser(userId));
     }
-    public boolean canUserBorrow(String userId,Source source, String date , String time){
+    public boolean canUserBorrow(String userId,String libraryId ,String sourceId, String date , String time){
         User user = getUser(userId);
-        if(user instanceof Student && ((Student)user).canBorrow(source,date,time)){
+        Source source = getLibrary(libraryId).getSource(sourceId);
+        if(user instanceof Student && ((Student)user).canBorrow(libraryId,source,date,time)){
             return true;
-        }if(user instanceof Staff && ((Staff)user).canBorrow(source,date,time)){
+        }if(user instanceof Staff && ((Staff)user).canBorrow(libraryId,source,date,time)){
             return true;
-        }if(user instanceof Professor && ((Professor)user).canBorrow(source,date,time)){
+        }if(user instanceof Professor && ((Professor)user).canBorrow(libraryId,source,date,time)){
             return true;
         }
         return false;
@@ -86,6 +87,13 @@ public class LibrarySystem {
             ((Staff) user).borrow(libraryId,sourceId,date,time);
         }if(user instanceof Professor){
             ((Professor) user).borrow(libraryId,sourceId,date,time);
+        }
+        Source source = getLibrary(libraryId).getSource(sourceId);
+        if(source instanceof NormalBook){
+            ((NormalBook) source). minusRemaining();
+        }
+        if(source instanceof Thesis){
+            ((Thesis) source).setBorrowed(true);
         }
     }
     public boolean hasUserBorrowedSource(String userId, String libraryId, String sourceId){
@@ -101,12 +109,42 @@ public class LibrarySystem {
     public long userReturns(String userId, String libraryId, String sourceId, String date, String time){
         User user = getUser(userId);
         Source source = getLibrary(libraryId).getSource(sourceId);
+        if(source instanceof NormalBook){
+            ((NormalBook) source).plusRemaining();
+        }
+        else{//if(source instanceof Thesis){
+            ((Thesis) source).setBorrowed(true);
+        }
         if(user instanceof Student){
             return ((Student) user).returns(libraryId,source,date,time);
-        }if(user instanceof Staff){
+        }else if(user instanceof Staff){
             return ((Staff) user).returns(libraryId,source,date,time);
         }else {
             return ((Professor) user).returns(libraryId,source,date,time);
+        }
+    }
+    public int getUserCountOfBorrowedSources(String userId){
+        User user = getUser(userId);
+        if(user instanceof Student){
+            return ((Student) user).getCountOfBorrowedSources();
+        }
+        else if(user instanceof Staff){
+            return ((Staff) user).getCountOfBorrowedSources();
+        }
+        else {
+            return ((Professor) user).getCountOfBorrowedSources();
+        }
+    }
+    public long getUserDebt(String userId){
+        User user = getUser(userId);
+        if(user instanceof Student){
+            return ((Student) user).getDebt();
+        }
+        else if(user instanceof Staff){
+            return ((Staff) user).getDebt();
+        }
+        else {
+            return ((Professor) user).getDebt();
         }
     }
 

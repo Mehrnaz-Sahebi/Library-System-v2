@@ -10,8 +10,11 @@ public interface Borrower {
 
 
     public int getCountOfBorrowedSources();
-    public boolean canBorrow(Source source, String date, String time);
+
+    abstract boolean canBorrow(String libraryId, Source source, String date, String time);
+
     public void borrow(String libraryId, String sourceId, String date, String time);
+    public void addToDebt(long newDebt);
     public boolean hasBorrowedSource(String libraryId, String sourceId);
 
     public long returns(String libraryId, Source source, String date, String time);

@@ -6,9 +6,14 @@ public class Thesis extends Source {
         super(sourceId, title, author, category);
         this.supervisor = supervisor;
         this.yearOfDefence = yearOfDefence;
+        this.isBorrowed = false;
     }
 
     public boolean isBorrowed() {
         return isBorrowed;
+    }
+
+    public void setBorrowed(boolean borrowed) {
+        isBorrowed = borrowed;
     }
 }
