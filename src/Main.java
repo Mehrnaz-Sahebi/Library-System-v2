@@ -51,7 +51,12 @@ public class Main {
             else if (poc[0].equals("remove-resource")) {
                 CommandProcessor.removeResource(poc, librarySystem);
             }
-
+            //borrow
+            else if (poc[0].equals("borrow")) {
+                CommandProcessor.borrow(poc, librarySystem);
+            }
+            command = scanner.nextLine();
+            poc= command.split("[#|]+");
         }
     }
 }

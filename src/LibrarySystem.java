@@ -67,6 +67,27 @@ public class LibrarySystem {
     public void removeUser(String userId){
         users.remove(this.getUser(userId));
     }
+    public boolean canUserBorrow(String userId,Source source, String date , String time){
+        User user = getUser(userId);
+        if(user instanceof Student && ((Student)user).canBorrow(source,date,time)){
+            return true;
+        }if(user instanceof Staff && ((Staff)user).canBorrow(source,date,time)){
+            return true;
+        }if(user instanceof Professor && ((Professor)user).canBorrow(source,date,time)){
+            return true;
+        }
+        return false;
+    }
+    public void userBorrow(String userId, String libraryId, String sourceId, String date, String time){
+        User user = getUser(userId);
+        if(user instanceof Student){
+            ((Student) user).borrow(libraryId,sourceId,date,time);
+        }if(user instanceof Staff){
+            ((Staff) user).borrow(libraryId,sourceId,date,time);
+        }if(user instanceof Professor){
+            ((Professor) user).borrow(libraryId,sourceId,date,time);
+        }
+    }
 
     //category
     public void addCategory(String categoryId, String name, String superCategory){

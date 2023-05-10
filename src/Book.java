@@ -7,4 +7,5 @@ public class Book extends Source{
         this.publisher = publisher;
         this.yearOfPublishing = yearOfPublishing;
     }
+
 }

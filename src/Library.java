@@ -55,4 +55,21 @@ public class Library {
     public void removeSource(String sourceId){
         sources.remove(this.getSource(sourceId));
     }
+    public boolean canSourceBeBorrowed(String sourceId){
+        Source source = getSource(sourceId);
+        if(source instanceof SellingBook||source instanceof GanjinehBook){
+            return false;
+        }
+        if(source instanceof NormalBook){
+            if(((NormalBook) source).getRemaining()<=0){
+               return false;
+            }
+        }
+        if(source instanceof Thesis){
+            if(((Thesis) source).isBorrowed()){
+                return false;
+            }
+        }
+        return true;
+    }
 }
