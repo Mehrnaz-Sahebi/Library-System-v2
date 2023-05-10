@@ -85,13 +85,14 @@ public class CommandProcessor {
     public static void removeUser(String[] poc, LibrarySystem librarySystem) {
         if (!librarySystem.doesUserExist(poc[1])) {
             System.out.println("not-found");
-        } else if (!librarySystem.isUserAdmin(poc[1])) {
+        }
+        else if (!librarySystem.isUserAdmin(poc[1])) {
             System.out.println("permission-denied");
         } else if (!librarySystem.getUser(poc[1]).getPassword().equals(poc[2])) {
             System.out.println("invalid-pass");
         } else if (!librarySystem.doesUserExist(poc[3])) {
             System.out.println("not-found");
-        } else if (librarySystem.getUserCountOfBorrowedSources(poc[1]) > 0 || librarySystem.getUserDebt(poc[1]) > 0 ){
+        } else if (librarySystem.getUserCountOfBorrowedSources(poc[3]) > 0 || librarySystem.getUserDebt(poc[3]) > 0 ){
             System.out.println("not-allowed");
         }
         else{

@@ -83,16 +83,16 @@ public class LibrarySystem {
         User user = getUser(userId);
         if(user instanceof Student){
             ((Student) user).borrow(libraryId,sourceId,date,time);
-        }if(user instanceof Staff){
+        }else if(user instanceof Staff){
             ((Staff) user).borrow(libraryId,sourceId,date,time);
-        }if(user instanceof Professor){
+        }else if(user instanceof Professor){
             ((Professor) user).borrow(libraryId,sourceId,date,time);
         }
         Source source = getLibrary(libraryId).getSource(sourceId);
         if(source instanceof NormalBook){
             ((NormalBook) source). minusRemaining();
         }
-        if(source instanceof Thesis){
+        else if(source instanceof Thesis){
             ((Thesis) source).setBorrowed(true);
         }
     }
@@ -102,9 +102,10 @@ public class LibrarySystem {
             return ((Student) user).hasBorrowedSource(libraryId,sourceId);
         }if(user instanceof Staff){
             return ((Staff) user).hasBorrowedSource(libraryId,sourceId);
-        }else {
+        }else if(user instanceof Professor){
             return ((Professor) user).hasBorrowedSource(libraryId,sourceId);
         }
+        return false;
     }
     public long userReturns(String userId, String libraryId, String sourceId, String date, String time){
         User user = getUser(userId);
@@ -119,9 +120,10 @@ public class LibrarySystem {
             return ((Student) user).returns(libraryId,source,date,time);
         }else if(user instanceof Staff){
             return ((Staff) user).returns(libraryId,source,date,time);
-        }else {
+        }else if(user instanceof Professor){
             return ((Professor) user).returns(libraryId,source,date,time);
         }
+        return 0;
     }
     public int getUserCountOfBorrowedSources(String userId){
         User user = getUser(userId);
@@ -131,9 +133,10 @@ public class LibrarySystem {
         else if(user instanceof Staff){
             return ((Staff) user).getCountOfBorrowedSources();
         }
-        else {
+        else if(user instanceof Professor){
             return ((Professor) user).getCountOfBorrowedSources();
         }
+        return 0;
     }
     public long getUserDebt(String userId){
         User user = getUser(userId);
@@ -143,9 +146,10 @@ public class LibrarySystem {
         else if(user instanceof Staff){
             return ((Staff) user).getDebt();
         }
-        else {
+        else if(user instanceof Professor){
             return ((Professor) user).getDebt();
         }
+        return 0;
     }
 
     //category
