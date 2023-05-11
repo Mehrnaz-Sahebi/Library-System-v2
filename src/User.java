@@ -23,4 +23,12 @@ public class User {
     public String getPassword() {
         return password;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
 }

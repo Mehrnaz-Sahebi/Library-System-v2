@@ -73,7 +73,11 @@ public class Main {
             }
             //search
             else if (poc[0].equals("search")){
-                CommandProcessor.search(poc, librarySystem);
+                CommandProcessor.search(poc ,librarySystem);
+            }
+            //search-user
+            else if (poc[0].equals("search-user")) {
+                CommandProcessor.searchUser(poc,librarySystem);
             }
             command = scanner.nextLine();
             poc= command.split("[#|]+");

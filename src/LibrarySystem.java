@@ -81,6 +81,14 @@ public class LibrarySystem {
         }
         return false;
     }
+    public boolean isUserStudent(String userId){
+        for (User user:users) {
+            if(user.getUserId().equals(userId)&& user instanceof Student){
+                return true;
+            }
+        }
+        return false;
+    }
     public void removeUser(String userId){
         users.remove(this.getUser(userId));
     }
@@ -250,7 +258,25 @@ public class LibrarySystem {
         }
         System.out.println();
     }
-
+    public void searchUser(String searchKey){
+        String searchKeyToLowerCase = searchKey.toLowerCase();
+        ArrayList<String> searchResult = new ArrayList<String>();
+        for (User user: users) {
+            if(user.getFirstName().toLowerCase().contains(searchKeyToLowerCase)||user.getLastName().toLowerCase().contains(searchKeyToLowerCase)){
+                searchResult.add(user.getUserId());
+            }
+        }
+        if(searchResult.size()==0){
+            System.out.println("not-found");
+            return;
+        }
+        searchResult.sort(String::compareToIgnoreCase);
+        System.out.printf("%s",searchResult.get(0));
+        for (int i = 1; i < searchResult.size(); i++) {
+            System.out.printf("|%s",searchResult.get(i));
+        }
+        System.out.println();
+    }
 
 
 

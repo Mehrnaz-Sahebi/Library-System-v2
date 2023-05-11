@@ -257,6 +257,17 @@ public class CommandProcessor {
     public static void search(String[] poc, LibrarySystem librarySystem){
         librarySystem.search(poc[1]);
     }
+    public static void searchUser(String[] poc, LibrarySystem librarySystem){
+        if(!librarySystem.doesUserExist(poc[1])){
+            System.out.println("not-found");
+        } else if (librarySystem.isUserStudent(poc[1])|| librarySystem.isUserAdmin(poc[1])) {
+            System.out.println("permission-denied");
+        } else if ((!librarySystem.getUser(poc[1]).getPassword().equals(poc[2]))){
+            System.out.println("invalid-pass");
+        } else {
+            librarySystem.searchUser(poc[3]);
+        }
+    }
 
 
 }
