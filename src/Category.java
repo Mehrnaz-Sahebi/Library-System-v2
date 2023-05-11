@@ -13,5 +13,7 @@ public class Category {
         return categoryId;
     }
 
-
+    public String getSuperCategory() {
+        return superCategory;
+    }
 }

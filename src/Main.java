@@ -79,6 +79,10 @@ public class Main {
             else if (poc[0].equals("search-user")) {
                 CommandProcessor.searchUser(poc,librarySystem);
             }
+            //category-report
+            else if (poc[0].equals("category-report")) {
+                CommandProcessor.categoryReport(poc ,librarySystem);
+            }
             command = scanner.nextLine();
             poc= command.split("[#|]+");
         }

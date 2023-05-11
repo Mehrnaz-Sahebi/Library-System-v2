@@ -12,6 +12,10 @@ public class SellingBook extends Book implements Buyable{
         this.remaining = countOfCopies;
     }
 
+    public int getCountOfCopies() {
+        return countOfCopies;
+    }
+
     public int getRemaining() {
         return remaining;
     }
