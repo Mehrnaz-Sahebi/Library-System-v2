@@ -10,6 +10,11 @@ public class Professor extends User implements Borrower, Reader , CommentWriter{
         this.borrowings = new HashSet<Borrowing>();
         debt = 0;
     }
+
+    public HashSet<Borrowing> getBorrowings() {
+        return borrowings;
+    }
+
     @Override
     public int getCountOfBorrowedSources(){
         return borrowings.size();
@@ -97,7 +102,7 @@ public class Professor extends User implements Borrower, Reader , CommentWriter{
         ((GanjinehBook) source).setLastRead(now);
     }
     @Override
-    public void addAComment(Source source , String comment){
+    public void addAComment(Source source, String comment){
         source.recieveAComment(comment);
     }
 }

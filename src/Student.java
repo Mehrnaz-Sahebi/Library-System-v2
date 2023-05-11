@@ -11,6 +11,10 @@ public class Student extends User implements Borrower ,CommentWriter{
         debt = 0;
     }
 
+    public HashSet<Borrowing> getBorrowings() {
+        return borrowings;
+    }
+
     @Override
     public int getCountOfBorrowedSources(){
         return borrowings.size();

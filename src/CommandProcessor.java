@@ -290,6 +290,17 @@ public class CommandProcessor {
             librarySystem.libraryReport(poc[3]);
         }
     }
+    public static void reportPassedDeadline(String[] poc , LibrarySystem librarySystem){
+        if(!librarySystem.doesUserExist(poc[1])||!librarySystem.doesLibraryExist(poc[3])){
+            System.out.println("not-found");
+        } else if (!librarySystem.isUserManager(poc[1]) || !((Manager)librarySystem.getUser(poc[1])).getLibraryId().equals(poc[3])) {
+            System.out.println("permission-denied");
+        } else if ((!librarySystem.getUser(poc[1]).getPassword().equals(poc[2]))){
+            System.out.println("invalid-pass");
+        } else {
+            librarySystem.reportPassedDeadline(poc[3],poc[4],poc[5]);
+        }
+    }
 
 
 

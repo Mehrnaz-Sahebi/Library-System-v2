@@ -87,6 +87,14 @@ public class Main {
             else if (poc[0].equals("library-report")) {
                 CommandProcessor.libraryReport(poc , librarySystem);
             }
+            //library-report
+            else if (poc[0].equals("library-report")) {
+                CommandProcessor.libraryReport(poc , librarySystem);
+            }
+            //report-passed-deadline
+            else if (poc[0].equals("report-passed-deadline")) {
+                CommandProcessor.reportPassedDeadline(poc , librarySystem);
+            }
             command = scanner.nextLine();
             poc= command.split("[#|]+");
         }

@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class LibrarySystem {
     private HashSet<Library> libraries;
@@ -246,9 +248,10 @@ public class LibrarySystem {
 
     //searches
     public void search(String searchKey) {
-        HashSet<String> searchResult = new HashSet<String>();
         String searchKeyToLowerCase = searchKey.toLowerCase();
+        ArrayList<String> sortedSearchResult = new ArrayList<String>();
         for (Library library : libraries) {
+            HashSet<String> searchResult = new HashSet<String>();
             for (Source source : library.getSources()) {
                 if (source.getTitle().toLowerCase().contains(searchKeyToLowerCase) || source.getAuthor().toLowerCase().contains(searchKeyToLowerCase)) {
                     searchResult.add(source.getSourceId());
@@ -260,14 +263,13 @@ public class LibrarySystem {
                     searchResult.add(source.getSourceId());
                 }
             }
+            for (String element : searchResult) {
+                sortedSearchResult.add(element);
+            }
         }
-        if (searchResult.size() == 0) {
+        if (sortedSearchResult.size() == 0) {
             System.out.println("not-found");
             return;
-        }
-        ArrayList<String> sortedSearchResult = new ArrayList<String>();
-        for (String element : searchResult) {
-            sortedSearchResult.add(element);
         }
         sortedSearchResult.sort(String::compareToIgnoreCase);
         System.out.printf("%s", sortedSearchResult.get(0));
@@ -344,6 +346,55 @@ public class LibrarySystem {
             }
         }
         System.out.printf("%d %d %d %d %d %d\n",countOfNormalBooks,countOfTheses,countOfBorrowedBooks,countOfBorrowedTheses,countOfGanjinehBooks,countOfRemainingSellingBooks);
+    }
+    public void reportPassedDeadline(String libraryId , String date, String time){
+        HashSet<String> result = new HashSet<String>();
+        String[] partsOfDate = date.split("-");
+        String[] partsOfTime = time.split(":");
+        Date currentTime = new Date(Integer.parseInt(partsOfDate[0])-1900, Integer.parseInt(partsOfDate[1])-1,Integer.parseInt(partsOfDate[2]),Integer.parseInt(partsOfTime[0]),Integer.parseInt(partsOfTime[1]));
+        for (User user: users) {
+            HashSet<Borrowing> borrowings = new HashSet<Borrowing>();
+            if(user instanceof Student){
+                borrowings = ((Student) user).getBorrowings();
+            } else if(user instanceof Staff){
+                borrowings = ((Staff) user).getBorrowings();
+            } else if(user instanceof Professor){
+                borrowings = ((Professor) user).getBorrowings();
+            }
+            for (Borrowing borrowing: borrowings) {
+                long differenceOFDays = currentTime.getTime() - borrowing.getBorrowingTime().getTime();
+                differenceOFDays = TimeUnit.HOURS.convert(differenceOFDays, TimeUnit.MILLISECONDS);
+                if(borrowing.getLibraryId().equals(libraryId)){
+                    Source source = getLibrary(libraryId).getSource(borrowing.getSourceId()) ;
+                    if(user instanceof Student && source instanceof NormalBook && differenceOFDays > Borrower.MAX_HOURS_BOOK_STUDENT){
+                        result.add(borrowing.getSourceId());
+                    }
+                    if(user instanceof Student && source instanceof Thesis && differenceOFDays > Borrower.MAX_HOURS_THESIS_STUDENT){
+                        result.add(borrowing.getSourceId());
+                    }
+                    if((user instanceof Staff || user instanceof Professor) && source instanceof NormalBook && differenceOFDays > Borrower.MAX_HOURS_BOOK_STAFF){
+                        result.add(borrowing.getSourceId());
+                    }
+                    if((user instanceof Staff || user instanceof Professor) && source instanceof Thesis && differenceOFDays > Borrower.MAX_HOURS_THESIS_STAFF){
+                        result.add(borrowing.getSourceId());
+                    }
+                }
+            }
+        }
+        if(result.size()==0){
+            System.out.println("none");
+            return;
+        }
+        ArrayList<String> sortedResult = new ArrayList<String>();
+        for (String element:result) {
+            sortedResult.add(element);
+        }
+        sortedResult.sort(String::compareToIgnoreCase);
+        System.out.printf("%s",sortedResult.get(0));
+        for (int i = 1; i < sortedResult.size(); i++) {
+            System.out.printf("|%s",sortedResult.get(i));
+        }
+        System.out.println();
     }
 
 }
