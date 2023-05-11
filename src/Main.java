@@ -67,6 +67,10 @@ public class Main {
             else if (poc[0].equals("read")) {
                 CommandProcessor.read(poc,librarySystem);
             }
+            //add-comment
+            else if (poc[0].equals("add-comment")) {
+                CommandProcessor.addComment(poc,librarySystem)
+            }
             command = scanner.nextLine();
             poc= command.split("[#|]+");
         }

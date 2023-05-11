@@ -2,7 +2,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
-public class Student extends User implements Borrower{
+public class Student extends User implements Borrower ,CommentWriter{
     private HashSet<Borrowing> borrowings;
     private long debt;
     public Student(String id, String password, String firstName, String lastName, String nationalId, int yearOfBirth, String address){
@@ -90,5 +90,8 @@ public class Student extends User implements Borrower{
             return newDebt;
         }
     }
-
+    @Override
+    public void addAComment(Source source , String comment){
+        source.recieveAComment(comment);
+    }
 }

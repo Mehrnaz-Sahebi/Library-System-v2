@@ -1,3 +1,3 @@
 public interface Reader {
-    void read(Source source, String date, String time);
+    public void read(Source source, String date, String time);
 }

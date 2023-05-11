@@ -2,7 +2,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
-public class Professor extends User implements Borrower, Reader{
+public class Professor extends User implements Borrower, Reader , CommentWriter{
     private HashSet<Borrowing> borrowings;
     private long debt;
     public Professor(String id, String password, String firstName, String lastName, String nationalId, int yearOfBirth, String address){
@@ -95,5 +95,9 @@ public class Professor extends User implements Borrower, Reader{
         String[] partsOfTime = time.split(":");
         Date now = new Date(Integer.parseInt(partsOfDate[0])-1900, Integer.parseInt(partsOfDate[1])-1,Integer.parseInt(partsOfDate[2]),Integer.parseInt(partsOfTime[0]),Integer.parseInt(partsOfTime[1]));
         ((GanjinehBook) source).setLastRead(now);
+    }
+    @Override
+    public void addAComment(Source source , String comment){
+        source.recieveAComment(comment);
     }
 }

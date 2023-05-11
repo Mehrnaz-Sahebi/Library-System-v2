@@ -1,4 +1,4 @@
-public class SellingBook extends Book{
+public class SellingBook extends Book implements Buyable{
     private int countOfCopies;
     private long price;
     private int discount;
@@ -19,7 +19,7 @@ public class SellingBook extends Book{
     public void setRemaining(int remaining) {
         this.remaining = remaining;
     }
-
+    @Override
     public void getBought(){
         setRemaining(getRemaining()-1);
     }

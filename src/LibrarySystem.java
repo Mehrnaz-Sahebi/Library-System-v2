@@ -72,6 +72,14 @@ public class LibrarySystem {
         }
         return false;
     }
+    public boolean isUserStaff(String userId){
+        for (User user:users) {
+            if(user.getUserId().equals(userId)&& user instanceof Staff){
+                return true;
+            }
+        }
+        return false;
+    }
     public void removeUser(String userId){
         users.remove(this.getUser(userId));
     }
@@ -158,6 +166,15 @@ public class LibrarySystem {
             return ((Professor) user).getDebt();
         }
         return 0;
+    }
+    public void userAddAComment(String userId , String libraryId , String sourceId, String comment){
+        Source source = getLibrary(libraryId).getSource(sourceId);
+        User user = getUser(userId);
+        if(user instanceof Professor){
+            ((Professor) user).addAComment(source,comment);
+        } else if (user instanceof Student){
+            ((Student) user).addAComment(source,comment);
+        }
     }
 
     //category
