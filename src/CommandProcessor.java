@@ -254,6 +254,10 @@ public class CommandProcessor {
             System.out.println("success");
         }
     }
+    public static void search(String[] poc, LibrarySystem librarySystem){
+        librarySystem.search(poc[1]);
+    }
+
 
 }
 

@@ -9,6 +9,10 @@ public class Thesis extends Source {
         this.isBorrowed = false;
     }
 
+    public String getSupervisor() {
+        return supervisor;
+    }
+
     public boolean isBorrowed() {
         return isBorrowed;
     }
@@ -16,4 +20,5 @@ public class Thesis extends Source {
     public void setBorrowed(boolean borrowed) {
         isBorrowed = borrowed;
     }
+
 }

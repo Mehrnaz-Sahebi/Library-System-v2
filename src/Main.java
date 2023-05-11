@@ -69,7 +69,11 @@ public class Main {
             }
             //add-comment
             else if (poc[0].equals("add-comment")) {
-                CommandProcessor.addComment(poc,librarySystem)
+                CommandProcessor.addComment(poc,librarySystem);
+            }
+            //search
+            else if (poc[0].equals("search")){
+                CommandProcessor.search(poc, librarySystem);
             }
             command = scanner.nextLine();
             poc= command.split("[#|]+");

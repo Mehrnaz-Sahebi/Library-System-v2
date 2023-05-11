@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -216,7 +217,39 @@ public class LibrarySystem {
         }
         return true;
     }
-
+    //searches
+    public void search(String searchKey){
+        HashSet<String> searchResult = new HashSet<String>();
+        String searchKeyToLowerCase = searchKey.toLowerCase();
+        for (Library library:libraries) {
+            for (Source source:library.getSources()) {
+                if(source.getTitle().toLowerCase().contains(searchKeyToLowerCase)||source.getAuthor().toLowerCase().contains(searchKeyToLowerCase))
+                {
+                    searchResult.add(source.getSourceId());
+                }
+                if(source instanceof Book && ((Book) source).getPublisher().toLowerCase().contains(searchKeyToLowerCase)){
+                    searchResult.add(source.getSourceId());
+                }
+                if(source instanceof Thesis && ((Thesis) source).getSupervisor().toLowerCase().contains(searchKeyToLowerCase)){
+                    searchResult.add(source.getSourceId());
+                }
+            }
+        }
+        if(searchResult.size()==0){
+            System.out.println("not-found");
+            return;
+        }
+        ArrayList<String> sortedSearchResult = new ArrayList<String>();
+        for (String element:searchResult) {
+            sortedSearchResult.add(element);
+        }
+        sortedSearchResult.sort(String::compareToIgnoreCase);
+        System.out.printf("%s",sortedSearchResult.get(0));
+        for (int i = 1; i < sortedSearchResult.size(); i++) {
+            System.out.printf("|%s",sortedSearchResult.get(i));
+        }
+        System.out.println();
+    }
 
 
 

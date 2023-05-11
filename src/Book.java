@@ -8,4 +8,7 @@ public class Book extends Source{
         this.yearOfPublishing = yearOfPublishing;
     }
 
+    public String getPublisher() {
+        return publisher;
+    }
 }

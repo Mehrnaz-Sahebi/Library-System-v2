@@ -22,6 +22,11 @@ public class Library {
     public String getLibraryId() {
         return libraryId;
     }
+
+    public HashSet<Source> getSources() {
+        return sources;
+    }
+
     public Source getSource(String sourceId){
         for (Source source:sources) {
             if(source.getSourceId().equals(sourceId)){
