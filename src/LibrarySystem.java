@@ -396,5 +396,18 @@ public class LibrarySystem {
         }
         System.out.println();
     }
-
+    public long reportPenaltiesSum (){
+        long sum = 0 ;
+        for (User user:users) {
+            if(user instanceof Staff){
+                sum += ((Staff) user).getDebt();
+            }
+            else if(user instanceof Student){
+                sum += ((Student) user).getDebt();
+            } else if (user instanceof Professor) {
+                sum += ((Professor) user).getDebt();
+            }
+        }
+        return sum;
+    }
 }

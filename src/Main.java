@@ -95,6 +95,11 @@ public class Main {
             else if (poc[0].equals("report-passed-deadline")) {
                 CommandProcessor.reportPassedDeadline(poc , librarySystem);
             }
+            //report-penalties-sum
+            else if (poc[0].equals("report-penalties-sum")) {
+                CommandProcessor.reportPenaltiesSum(poc , librarySystem);
+            }
+
             command = scanner.nextLine();
             poc= command.split("[#|]+");
         }

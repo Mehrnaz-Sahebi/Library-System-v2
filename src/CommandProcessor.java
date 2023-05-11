@@ -301,6 +301,17 @@ public class CommandProcessor {
             librarySystem.reportPassedDeadline(poc[3],poc[4],poc[5]);
         }
     }
+    public static void reportPenaltiesSum (String[] poc , LibrarySystem librarySystem){
+        if(!librarySystem.doesUserExist(poc[1])){
+            System.out.println("not-found");
+        } else if (!librarySystem.isUserAdmin(poc[1])) {
+            System.out.println("permission-denied");
+        } else if ((!librarySystem.getUser(poc[1]).getPassword().equals(poc[2]))){
+            System.out.println("invalid-pass");
+        } else {
+            librarySystem.reportPenaltiesSum();
+        }
+    }
 
 
 
