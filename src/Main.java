@@ -63,6 +63,10 @@ public class Main {
             else if(poc[0].equals("buy")){
                 CommandProcessor.buy(poc,librarySystem);
             }
+            //read
+            else if (poc[0].equals("read")) {
+                CommandProcessor.read(poc,librarySystem);
+            }
             command = scanner.nextLine();
             poc= command.split("[#|]+");
         }

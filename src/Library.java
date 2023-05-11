@@ -96,4 +96,11 @@ public class Library {
         }
         return true;
     }
+    public boolean canSourceBeRead(String sourceId , String date, String time){
+        Source source = getSource(sourceId);
+        if(source instanceof GanjinehBook && ((GanjinehBook) source).canBookBeRead(date,time)){
+            return true;
+        }
+        return false;
+    }
 }

@@ -64,6 +64,14 @@ public class LibrarySystem {
         }
         return false;
     }
+    public boolean isUserProfessor(String userId){
+        for (User user:users) {
+            if(user.getUserId().equals(userId)&& user instanceof Professor){
+                return true;
+            }
+        }
+        return false;
+    }
     public void removeUser(String userId){
         users.remove(this.getUser(userId));
     }
