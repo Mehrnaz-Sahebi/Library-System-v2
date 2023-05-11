@@ -83,6 +83,10 @@ public class Main {
             else if (poc[0].equals("category-report")) {
                 CommandProcessor.categoryReport(poc ,librarySystem);
             }
+            //library-report
+            else if (poc[0].equals("library-report")) {
+                CommandProcessor.libraryReport(poc , librarySystem);
+            }
             command = scanner.nextLine();
             poc= command.split("[#|]+");
         }

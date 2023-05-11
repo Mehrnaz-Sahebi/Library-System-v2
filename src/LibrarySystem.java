@@ -319,6 +319,31 @@ public class LibrarySystem {
         }
         getLibrary(libraryId).categoryReport(categoriesToCheck);
     }
-
+    public void libraryReport(String libraryId){
+        int countOfNormalBooks = 0;
+        int countOfTheses = 0;
+        int countOfBorrowedBooks = 0;
+        int countOfBorrowedTheses = 0;
+        int countOfGanjinehBooks = 0;
+        int countOfRemainingSellingBooks = 0;
+        Library library = getLibrary(libraryId);
+        HashSet<Source> sources = library.getSources();
+        for (Source source:sources) {
+            if(source instanceof NormalBook){
+                countOfNormalBooks += ((NormalBook) source).getCountOfCopies();
+                countOfBorrowedBooks += ((NormalBook) source).getCountOfCopies() - ((NormalBook) source).getRemaining();
+            } else if (source instanceof Thesis) {
+                countOfTheses ++;
+                if(((Thesis) source).isBorrowed()){
+                    countOfBorrowedTheses ++;
+                }
+            } else if (source instanceof GanjinehBook) {
+                countOfGanjinehBooks ++;
+            } else if (source instanceof SellingBook) {
+                countOfRemainingSellingBooks += ((SellingBook) source).getRemaining();
+            }
+        }
+        System.out.printf("%d %d %d %d %d %d\n",countOfNormalBooks,countOfTheses,countOfBorrowedBooks,countOfBorrowedTheses,countOfGanjinehBooks,countOfRemainingSellingBooks);
+    }
 
 }
