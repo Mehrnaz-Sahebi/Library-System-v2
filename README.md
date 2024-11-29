@@ -19,7 +19,7 @@ git clone https://github.com/Mehrnaz-Sahebi/Library-System-v2.git
 ```
 3. Open the project in your preferred Java IDE (e.g., IntelliJ IDEA or Eclipse).
 
-4. Set up and run both the **Main**:
+4. Set up and run the **Main** class:
 5. Customizing the User Inteface (Optional):
      - The system allows you to integrate with any user interface (UI) by modifying           the Main class. You can replace the current CLI with a GUI or Web UI as per           your requirements.
 
