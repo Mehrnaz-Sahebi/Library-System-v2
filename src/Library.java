@@ -127,13 +127,15 @@ public class Library {
             for (Source source : sources) {
                 if (source.getCategory().equals(categoryToCheck)) {
                     if (source instanceof NormalBook) {
-                        countOfNormalBooks += ((NormalBook) source).getCountOfCopies();
+                        countOfNormalBooks += ((NormalBook) source).getRemaining();
                     } else if (source instanceof GanjinehBook) {
                         countOfGanjinehBooks += 1;
                     } else if (source instanceof SellingBook) {
-                        countOfSellingBooks += ((SellingBook) source).getCountOfCopies();
-                    } else {
-                        countOfTheses += 1;
+                        countOfSellingBooks += ((SellingBook) source).getRemaining();
+                    } else if(source instanceof Thesis){
+                        if(!((Thesis) source).isBorrowed()) {
+                            countOfTheses += 1;
+                        }
                     }
                 }
             }

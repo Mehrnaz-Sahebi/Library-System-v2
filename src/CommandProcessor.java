@@ -245,7 +245,7 @@ public class CommandProcessor {
     public static void addComment(String[] poc, LibrarySystem librarySystem){
         if (!librarySystem.doesLibraryExist(poc[3]) || !librarySystem.getLibrary(poc[3]).doesSourceExist(poc[4]) || !librarySystem.doesUserExist(poc[1])) {
             System.out.println("not-found");
-        } else if (librarySystem.isUserAdmin(poc[1])|| librarySystem.isUserStaff(poc[1])) {
+        } else if (librarySystem.isUserAdmin(poc[1])|| librarySystem.isUserStaff(poc[1]) || librarySystem.isUserManager(poc[1])) {
             System.out.println("permission-denied");
         } else if (!librarySystem.getUser(poc[1]).getPassword().equals(poc[2])) {
             System.out.println("invalid-pass");
@@ -309,7 +309,7 @@ public class CommandProcessor {
         } else if ((!librarySystem.getUser(poc[1]).getPassword().equals(poc[2]))){
             System.out.println("invalid-pass");
         } else {
-            librarySystem.reportPenaltiesSum();
+            System.out.println(librarySystem.reportPenaltiesSum());
         }
     }
 
