@@ -1,0 +1,5 @@
+# Ignore the .idea folder (IDE-specific)
+.idea/
+out/production/HW_workingOnThis/
+
+HW_workingOnThis.iml
